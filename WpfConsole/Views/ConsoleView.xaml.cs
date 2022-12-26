@@ -23,7 +23,6 @@ namespace WpfConsole.Views
     /// </summary>
     public partial class ConsoleView : UserControl
     {
-
         private ConsoleContent _dc;
 
         public ConsoleView()
@@ -42,6 +41,12 @@ namespace WpfConsole.Views
 
         private void InputBlock_PreviewKeyUp(object sender, KeyEventArgs e)
         {
+            if (e.Key == Key.Escape)
+            {
+                _dc.HistoryIndex = _dc.History.Count;
+                _dc.ConsoleInput = string.Empty;
+                    return;
+            }
 
             if (e.Key == Key.Down || e.Key == Key.Up)
             {
@@ -59,7 +64,11 @@ namespace WpfConsole.Views
                 }
 
                 if (_dc.HistoryIndex > _dc.History.Count - 1)
-                    _dc.HistoryIndex = _dc.History.Count - 1;
+                {
+                    _dc.HistoryIndex = _dc.History.Count;
+                    _dc.ConsoleInput = string.Empty;
+                    return;
+                }
 
                 if (_dc.HistoryIndex < 0)
                     _dc.HistoryIndex = 0;
@@ -67,16 +76,10 @@ namespace WpfConsole.Views
                 int pos = _dc.HistoryIndex;
                 _dc.ConsoleInput = _dc.History.ElementAt(pos);
             }
-
-            if (e.Key == Key.Escape)
-            {
-                _dc.ConsoleInput = string.Empty;
-            }
         }
 
         void InputBlock_KeyDown(object sender, KeyEventArgs e)
         {
-
             _dc.ConsoleInput = InputBlock.Text;
 
             if (e.Key == Key.Enter && !string.IsNullOrEmpty(_dc.ConsoleInput))
