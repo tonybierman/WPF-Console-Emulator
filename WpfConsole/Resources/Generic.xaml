@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- The Border Brush is used as the color for most borders -->
+    <SolidColorBrush x:Key="TerminalForeground" Color="Silver" />
+
+    <!-- The Background Brush is used as the background for the Main Window -->
+    <SolidColorBrush x:Key="TerminalBackground" Color="Black" />
+
+    <Style x:Key="TerminalOutputLine" TargetType="{x:Type TextBlock}">
+        <Setter Property="Foreground" Value="{StaticResource TerminalForeground}" />
+        <Setter Property="Background" Value="{StaticResource TerminalBackground}" />
+        <Setter Property="FontFamily" Value="Consolas"/>
+    </Style>
+
+    <Style x:Key="TerminalInputLine" TargetType="{x:Type TextBox}">
+        <Setter Property="Foreground" Value="{StaticResource TerminalForeground}" />
+        <Setter Property="Background" Value="{StaticResource TerminalBackground}" />
+        <Setter Property="FontFamily" Value="Consolas"/>
+        <Setter Property="BorderBrush" Value="{x:Null}"/>
+        <Setter Property="SelectionBrush" Value="{x:Null}"/>
+    </Style>
+
+</ResourceDictionary>
