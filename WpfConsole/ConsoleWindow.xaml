@@ -1,0 +1,14 @@
+﻿<Window x:Class="WpfConsole.ConsoleWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfConsole"
+        mc:Ignorable="d"
+        xmlns:vw="clr-namespace:WpfConsole.Views"
+        xmlns:vm="clr-namespace:WpfConsole.ViewModels"
+        Title="WPF Console Window" MinHeight="512" MinWidth="1024" Height="520" Width="1024">
+    <Grid>
+        <vw:ConsoleView x:Name="View"/>
+    </Grid>
+</Window>

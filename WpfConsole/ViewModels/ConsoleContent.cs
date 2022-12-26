@@ -10,18 +10,34 @@ namespace WpfConsole.ViewModels
 {
     public class ConsoleContent : INotifyPropertyChanged
     {
-        private string consoleInput = string.Empty;
-        private ObservableCollection<string> consoleOutput = new ObservableCollection<string>() { "WPF Console Emulator..." };
+        private string _consoleInput = string.Empty;
+        private ObservableCollection<string> _history = new ObservableCollection<string>();
+        private ObservableCollection<string> _consoleOutput = new ObservableCollection<string>() { "WPF Console Emulator..." };
+        private int _historyIndex = 0;
+
+
+        public int HistoryIndex
+        {
+            get
+            {
+                return _historyIndex;
+            }
+            set
+            {
+                _historyIndex = value;
+                OnPropertyChanged("HistoryIndex");
+            }
+        }
 
         public string ConsoleInput
         {
             get
             {
-                return consoleInput;
+                return _consoleInput;
             }
             set
             {
-                consoleInput = value;
+                _consoleInput = value;
                 OnPropertyChanged("ConsoleInput");
             }
         }
@@ -30,12 +46,25 @@ namespace WpfConsole.ViewModels
         {
             get
             {
-                return consoleOutput;
+                return _consoleOutput;
             }
             set
             {
-                consoleOutput = value;
+                _consoleOutput = value;
                 OnPropertyChanged("ConsoleOutput");
+            }
+        }
+
+        public ObservableCollection<string> History
+        {
+            get
+            {
+                return _history;
+            }
+            set
+            {
+                _history = value;
+                OnPropertyChanged("History");
             }
         }
 
@@ -44,8 +73,9 @@ namespace WpfConsole.ViewModels
             ConsoleOutput.Add(ConsoleInput);
 
             // Parse and execute command here
+            ConsoleOutput.Add("Operation unknown.  Try 'help' for more info.");
 
-            ConsoleInput = String.Empty;
+           ConsoleInput = String.Empty;
         }
 
 
